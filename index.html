@@ -1,0 +1,312 @@
+
+
+
+<!DOCTYPE html><html lang="en">
+<head>
+    <!-- ===================================== -->
+    <!-- ATTENDANCE MANAGEMENT SYSTEM -->
+    <!-- Developed By GROUP ONE -->
+    <!-- ===================================== --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AMS PRO | Attendance Management System</title>
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- External CSS -->
+<link rel="stylesheet" href="style.css">
+<img src="images/logo.png"
+     alt="AMS PRO Logo"
+     width="200">
+
+</head><body><!-- ===================================== --><!-- LOADER --><!-- ===================================== --><div id="loader">
+    <div class="spinner"></div>
+    <h2>AMS PRO</h2>
+</div><!-- ===================================== --><!-- LOGIN PAGE --><!-- ===================================== --><section class="login-page" id="loginPage"><div class="login-container">
+
+    <div class="login-left">
+
+        <img src="images/logo.png"
+        alt="Attendance Logo"
+        class="login-logo">
+
+        <h1>AMS PRO</h1>
+
+        <p>
+            Smart Attendance Management System
+        </p>
+
+    </div>
+
+    <div class="login-right">
+
+        <div class="login-card">
+
+            <h2>Welcome Back</h2>
+
+            <p>
+                Login To Continue
+            </p>
+
+            <input type="text"
+            id="username"
+            placeholder="Enter Username">
+
+            <input type="password"
+            id="password"
+            placeholder="Enter Password">
+
+            <button onclick="login()">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Login
+            </button>
+
+            <button
+            class="register-btn"
+            onclick="showRegister()">
+
+                Create Admin Account
+
+            </button>
+
+            <a href="#"
+            onclick="forgotPassword()">
+
+            Forgot Password?
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section><!-- ===================================== --><!-- REGISTER PAGE --><!-- ===================================== --><section
+class="register-page"
+id="registerPage"><div class="register-container"><div class="register-card">
+
+    <h2>Admin Registration</h2>
+
+    <input type="text"
+    id="regUsername"
+    placeholder="Create Username">
+
+    <input type="password"
+    id="regPassword"
+    placeholder="Create Password">
+
+    <input type="password"
+    id="confirmPassword"
+    placeholder="Confirm Password">
+
+    <button onclick="registerAdmin()">
+
+        Register Account
+
+    </button>
+
+    <button
+    class="back-btn"
+    onclick="showLogin()">
+
+        Back To Login
+
+    </button>
+
+</div>
+
+</div></section><!-- ===================================== --><!-- DASHBOARD --><!-- ===================================== --><div class="dashboard"
+id="dashboard"><!-- ===================================== --><!-- SIDEBAR --><!-- ===================================== --><aside class="sidebar"><div class="logo-section">
+
+    <img src="images/logo.png"
+    alt="AMS Logo">
+
+    <h2>AMS PRO</h2>
+
+</div>
+
+<ul>
+
+    <li onclick="showSection('home')">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+    </li>
+
+    <li onclick="showSection('students')">
+        <i class="fa-solid fa-user-graduate"></i>
+        Students
+    </li>
+
+    <li onclick="showSection('attendance')">
+        <i class="fa-solid fa-calendar-check"></i>
+        Attendance
+    </li>
+
+    <li onclick="showSection('reports')">
+        <i class="fa-solid fa-chart-column"></i>
+        Reports
+    </li>
+
+    <li onclick="showSection('settings')">
+        <i class="fa-solid fa-gear"></i>
+        Settings
+    </li>
+
+</ul>
+
+<button
+class="logout-btn"
+onclick="logout()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+
+</button>
+
+</aside><!-- ===================================== --><!-- MAIN CONTENT --><!-- ===================================== --><main class="main-content"><!-- HEADER --><header class="header"><div><h1>
+Attendance Dashboard
+</h1><p>
+Manage Student Attendance Professionally
+</p></div><div class="header-right"><span id="clock"></span>
+
+<button onclick="toggleTheme()">🌙 Theme
+
+</button></div></header><!-- DASHBOARD CARDS --><section
+class="cards-section"
+id="homeSection"><div class="card"><i class="fa-solid fa-users"></i>
+
+<h2 id="totalStudents">
+0
+</h2><p>Total Students</p></div><div class="card"><i class="fa-solid fa-user-check"></i>
+
+<h2 id="presentStudents">
+0
+</h2><p>Present Students</p></div><div class="card"><i class="fa-solid fa-user-xmark"></i>
+
+<h2 id="absentStudents">
+0
+</h2><p>Absent Students</p></div><div class="card"><i class="fa-solid fa-percent"></i>
+
+<h2 id="attendancePercentage">
+0%
+</h2><p>Attendance Rate</p></div></section>
+<!-- ===================================== --><!-- STUDENT MANAGEMENT SECTION --><!-- ===================================== --><section
+class="student-section"
+id="studentsSection"><h2>
+<i class="fa-solid fa-user-graduate"></i>
+Student Management
+</h2><div class="student-form"><input
+type="text"
+id="studentName"
+placeholder="Student Full Name">
+
+<input
+type="text"
+id="studentId"
+placeholder="Student ID">
+
+<input
+type="email"
+id="studentEmail"
+placeholder="Student Email">
+
+<input
+type="text"
+id="department"
+placeholder="Department">
+
+<input
+type="file"
+id="studentPhoto"
+accept="image/*">
+
+<button onclick="addStudent()"><i class="fa-solid fa-plus"></i>
+Add Student
+
+</button></div><div class="search-box"><input
+type="text"
+id="searchStudent"
+placeholder="Search Student..."
+onkeyup="searchStudent()">
+
+</div><table><thead><tr><th>Photo</th>
+<th>Name</th>
+<th>ID</th>
+<th>Email</th>
+<th>Department</th>
+<th>Actions</th></tr></thead><tbody id="studentTable"></tbody></table></section><!-- ===================================== --><!-- ATTENDANCE MANAGEMENT --><!-- ===================================== --><section
+class="attendance-section"
+id="attendanceSection"><h2><i class="fa-solid fa-calendar-check"></i>
+
+Attendance Management
+
+</h2><table><thead><tr><th>Photo</th>
+<th>Name</th>
+<th>ID</th>
+<th>Status</th>
+<th>Action</th></tr></thead><tbody id="attendanceTable"></tbody></table></section><!-- ===================================== --><!-- QUICK STATISTICS --><!-- ===================================== --><section class="statistics"><div class="stat-card"><h3>Today's Attendance</h3><h1 id="todayAttendance">
+0
+</h1></div><div class="stat-card"><h3>Late Students</h3><h1 id="lateStudents">
+0
+</h1></div><div class="stat-card"><h3>Registered Students</h3><h1 id="registeredStudents">
+0
+</h1></div><div class="stat-card"><h3>Attendance Records</h3><h1 id="attendanceRecords">
+0
+</h1></div></section>
+<!-- ===================================== --><!-- REPORT SECTION --><!-- ===================================== --><section
+class="report-section"
+id="reportsSection"><h2><i class="fa-solid fa-chart-column"></i>
+
+Attendance Reports
+
+</h2><div class="report-tools"><input
+type="text"
+id="attendanceSearch"
+placeholder="Search Attendance..."
+onkeyup="searchAttendance()">
+
+<select
+id="attendanceFilter"
+onchange="filterAttendance()">
+
+<option value="All">All</option>
+<option value="Present">Present</option>
+<option value="Absent">Absent</option>
+<option value="Late">Late</option></select><button onclick="printReport()"><i class="fa-solid fa-print"></i>
+
+Print Report
+
+</button></div><table><thead><tr><th>Name</th>
+<th>ID</th>
+<th>Status</th>
+<th>Date</th></tr></thead><tbody id="reportTable"></tbody></table></section><!-- ===================================== --><!-- SETTINGS SECTION --><!-- ===================================== --><section
+class="settings-section"
+id="settingsSection"><h2><i class="fa-solid fa-gear"></i>
+
+System Settings
+
+</h2><div class="settings-box"><button onclick="toggleTheme()">🌙 Toggle Theme
+
+</button><button onclick="exportData()">📁 Export Data
+
+</button><button onclick="clearData()">🗑 Clear All Data
+
+</button></div></section><!-- ===================================== --><!-- NOTIFICATION BOX --><!-- ===================================== --><div
+id="notification"
+class="notification">Success
+
+</div><!-- ===================================== --><!-- FOOTER --><!-- ===================================== --><footer><div class="footer-content"><h3>AMS PRO Attendance Management System
+
+</h3><p>Professional Student Attendance Tracking Platform
+
+</p><p>Developed By
+
+<strong>Najma 
+
+</strong></p><p>© 2026 All Rights Reserved
+
+</p></div></footer></main></div><!-- ===================================== --><!-- JAVASCRIPT FILE --><!-- ===================================== --><script src="app.js"></script></body>
+</html>
